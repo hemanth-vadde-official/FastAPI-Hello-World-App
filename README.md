@@ -1,21 +1,24 @@
-# FastAPI-Hello-World-App
----
-page_type: sample
-description: "A minimal sample app that can be used to demonstrate deploying FastAPI apps to Azure App Service."
-languages:
-- python
-products:
-- azure
-- azure-app-service
----
-
 # Deploy a Python (FastAPI) web app to Azure App Service - Sample Application
 
-This is the sample FastAPI application for the Azure Quickstart [Deploy a Python (Django, Flask or FastAPI) web app to Azure App Service](https://docs.microsoft.com/en-us/azure/app-service/quickstart-python). For instructions on how to create the Azure resources and deploy the application to Azure, refer to the Quickstart article.
+# FastAPI Hello World App
 
-Sample applications are available for the other frameworks here:
-- Django [https://github.com/Azure-Samples/msdocs-python-django-webapp-quickstart](https://github.com/Azure-Samples/msdocs-python-django-webapp-quickstart)
-- Flask [https://github.com/Azure-Samples/msdocs-python-flask-webapp-quickstart](https://github.com/Azure-Samples/msdocs-python-flask-webapp-quickstart)
+This is a simple FastAPI application that returns "Hello, World!" when you visit the root endpoint `/`.
+
+## Getting Started
+
+### Prerequisites
+
+- Python 3.x
+- FastAPI
+- Uvicorn
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/fastapi-app.git
+   cd fastapi-app
+
 
 If you need an Azure account, you can [create one for free](https://azure.microsoft.com/en-us/free/).
 
