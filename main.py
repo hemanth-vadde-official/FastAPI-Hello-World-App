@@ -13,4 +13,4 @@ def read_root():
     Returns:
         dict: A dictionary with a 'message' key and 'Hello, World!' as value.
     """
-    return {"Hello, World!"}
+    return {"message": "Hello, World!"}
