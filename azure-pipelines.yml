@@ -10,10 +10,31 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: AzureCLI@2
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'DeploymentServiceConnection'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      docker build -t demofastapi1.azurecr.io/web-game:tag 2048-game
+      az acr login -n demofastapi1
+      docker push demofastapi1.azurecr.io/web-game:tag
+- script: cat 01_kubernetes_aks/app-deploy.yaml
+
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Azure Resource Manager'
+    azureSubscriptionEndpoint: 'DeploymentServiceConnection'
+    azureResourceGroup: 'demo-rg'
+    kubernetesCluster: 'demofastapp'
+    namespace: 'default'
+    command: 'apply'
+    useConfigurationFile: true
+    configuration: '01_kubernetes_aks'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
+    azureSubscriptionEndpointForSecrets: 'DeploymentServiceConnection'
+    azureContainerRegistry: 'demofastapi1.azurecr.io'
+    forceUpdate: false
